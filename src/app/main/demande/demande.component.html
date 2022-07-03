@@ -1,0 +1,153 @@
+<div id="orders" class="page-layout carded fullwidth inner-scroll">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <div class="content p-24">
+                    <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="center center">
+                        <!-- ADD EVENT BUTTON -->
+                        <!-- <button (click)="dishide_demade_reclamation()" (click)="onCreate()" mat-fab class="add-event-button mat-accent" aria-label="Add event" [@animate]="{value:'*',params:{delay:'300ms',scale:'2'}}">
+                        <mat-icon>add</mat-icon>
+                        </button> -->
+                        <!-- / ADD EVENT BUTTON -->
+                        <!-- SEARCH -->
+                        <!-- <div class="search-wrapper  ml-sm-32"> -->
+                        <!-- <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center"> -->
+
+                        <!-- </div> -->
+                        <!-- </div> -->
+                        <!-- / SEARCH -->
+                        <!-- ADD EVENT BUTTON -->
+                        <button (click)="onCreate()" mat-fab class="add-event-button mat-accent" aria-label="Add event" [@animate]="{value:'*',params:{delay:'300ms',scale:'2'}}">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <!-- / ADD EVENT BUTTON -->
+                        <button mat-button [matMenuTriggerFor]="demandeMenu" class="user-button">
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <span class="demnade mr-12" fxHide fxShow.gt-sm class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                                    Demande
+                                </span>
+                                <mat-icon class="s-20" fxHide.xs>keyboard_arrow_down</mat-icon>
+                            </div>
+                        </button>
+                        <mat-menu #demandeMenu="matMenu" [overlapTrigger]="false">
+                            <button mat-menu-item class="">Stages </button>
+                            <!-- <button mat-menu-item class="" (click)="dishide_exhaunauration()">Exhaunaurations </button>
+                            <button mat-menu-item class="" (click)="dishide_environmantals()">Environmentals </button> -->
+                        </mat-menu><button mat-button [matMenuTriggerFor]="reclamationMenu" class="user-button">
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <span class="demnade mr-12" fxHide fxShow.gt-sm class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                                    Réclamation
+                                </span>
+                                <mat-icon class="s-20" fxHide.xs>keyboard_arrow_down</mat-icon>
+                            </div>
+                        </button>
+                        <mat-form-field class="example-full-width">
+
+                            <span matPrefix> </span>
+                            <input type="tel" matInput placeholder="Rechercher" name="search" [(ngModel)]="search">
+                            <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+
+                        </mat-form-field>
+                        <button mat-raised-button color="marron" aria-label="Example icon button with a plus one icon">
+                            inbox:<mat-icon>plus_one</mat-icon>
+                        </button>
+
+
+                        <!-- <button mat-raised-button matBadge="27">
+                                     Hide
+                        </button> -->
+                    </div>
+                    <!-- <mat-paginator> -->
+
+                    <!-- </mat-paginator> -->
+                    <mat-menu #reclamationMenu="matMenu" [overlapTrigger]="false ">
+                        <!-- <button mat-menu-item class=" " (click)="dishide_pedagogie() ">Pédagogique </button> -->
+                        <button mat-menu-item class=" "> Services   </button>
+                    </mat-menu>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT CARD -->
+        <div class="content-card ">
+            <!-- <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true "></mat-header-row> -->
+
+            <mat-paginator [length]="100 " [pageSizeOptions]="[5, 10, 25, 100]" aria-label="">
+            </mat-paginator>
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true "></mat-header-row>
+            <!--  -->
+            <!-- <mat-table class="orders-table" matSort [@animateStagger]="{value:'20'}" fusePerfectScrollbar>
+
+            </mat-table> -->
+            <!-- </div> -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>
+<style>
+    /* .searcher {
+        background: #f4f6f7;
+        color: white;
+        height: 34px;
+        width: 34px;
+    } */
+    
+    .textarea_button {
+        position: relative;
+        top: 24%;
+        /* left: 10%; */
+        background: #1579cb;
+        color: white;
+        border-style: outset;
+        border-color: #0066A2;
+        width: 100px;
+        font: bold15px arial, sans-serif;
+        text-shadow: none;
+    }
+</style>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport " content="width=device-width, initial-scale=1 ">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        .demande {
+            background-color: #269feb;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>

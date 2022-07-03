@@ -1,0 +1,111 @@
+<div class="center">
+
+    <!-- CONTENT CARD -->
+    <div class="content-card">
+        <!-- <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row> -->
+        <button class="close" mat-button (click)="close()">x</button>
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <input type="text" required ngModel pattern="[a-zA-Z0-9]+@gmail.com" class="form-control" name="to" placeholder="destinataire: exemple123@gmail.com">
+                </div>
+                <div class="alert alert-danger" *ngIf="dis.invalid && dis.touched">
+                    <div *ngIf="dis.errors.required"> Le distinatiare est obligatoire </div>
+                    <div *ngIf="dis.errors.pattern"> Le mail est incorrect. </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" required ngModel class="form-control" name="subject" placeholder="Objet">
+                </div>
+                <div class="alert alert-danger" *ngIf="obj.invalid && obj.touched"> L'objet est obligatoire </div>
+                <label for="classe ">Type de demande</label>
+                <select id="classe " name="classe ">
+                    <option value="dut " >Stages</option>
+                    <option value="dst " >Exhaunaurations</option>
+                    <option value="dic " >Environmentals</option>
+                    </select>
+                <label for="classe ">Type de reclamation</label>
+                <select id="classe " name="classe ">
+                    <option value="dut " >Stages</option>
+                    <option value="dst " >Exhaunaurations</option>
+                    <option value="dic " >Environmentals</option>
+                    </select>
+
+                <label for="subject ">Sujet</label>
+                <textarea equired ngModel rows="3" id="subject " name="subject " placeholder="Ecrire ici... " style="height:200px "></textarea>
+                <div class="alert alert-danger" *ngIf="suj.invalid && suj.touched">
+                    <!-- Css les class alert danger bootsratp foncionne pas  -->
+                    Le sujet est obligatoire
+                </div>
+                <button type="submit" class="mat-raised-button" (click)="SendEmail()">Envoyer</button>
+            </form>
+        </div>
+
+    </div>
+    <!-- / CONTENT CARD -->
+
+</div>
+<style>
+    .textarea_button {
+        position: relative;
+        top: 24%;
+        /* left: 10%; */
+        background: #1579cb;
+        color: white;
+        border-style: outset;
+        border-color: #0066A2;
+        width: 100px;
+        font: bold15px arial, sans-serif;
+        text-shadow: none;
+    }
+</style>
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport " content="width=device-width, initial-scale=1 ">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* * {
+            box-sizing: border-box;
+        } */
+        
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+        
+        .demande {
+            background-color: #269feb;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .container {
+            border-radius: 5px;
+            background-color: #318bd9;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+</body>
+
+</html>

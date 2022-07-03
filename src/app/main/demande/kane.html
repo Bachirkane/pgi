@@ -1,0 +1,305 @@
+<div id="orders" class="page-layout carded fullwidth inner-scroll">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <div class="content p-24">
+                    <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="center center">
+                        <!-- ADD EVENT BUTTON -->
+                        <!-- <button (click)="dishide_demade_reclamation()" (click)="onCreate()" mat-fab class="add-event-button mat-accent" aria-label="Add event" [@animate]="{value:'*',params:{delay:'300ms',scale:'2'}}">
+                        <mat-icon>add</mat-icon>
+                        </button> -->
+                        <!-- / ADD EVENT BUTTON -->
+                        <!-- SEARCH -->
+                        <!-- <div class="search-wrapper  ml-sm-32"> -->
+                        <!-- <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center"> -->
+
+                        <!-- </div> -->
+                        <!-- </div> -->
+                        <!-- / SEARCH -->
+                        <!-- ADD EVENT BUTTON -->
+                        <button (click)="onCreate()" mat-fab class="add-event-button mat-accent" aria-label="Add event" [@animate]="{value:'*',params:{delay:'300ms',scale:'2'}}">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <!-- / ADD EVENT BUTTON -->
+                        <button mat-button [matMenuTriggerFor]="demandeMenu" class="user-button">
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <span class="demnade mr-12" fxHide fxShow.gt-sm class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                                    Demande
+                                </span>
+                                <mat-icon class="s-20" fxHide.xs>keyboard_arrow_down</mat-icon>
+                            </div>
+                        </button>
+                        <mat-menu #demandeMenu="matMenu" [overlapTrigger]="false">
+                            <button mat-menu-item class="" (click)="dishide_stage()">Stages </button>
+                            <!-- <button mat-menu-item class="" (click)="dishide_exhaunauration()">Exhaunaurations </button>
+                            <button mat-menu-item class="" (click)="dishide_environmantals()">Environmentals </button> -->
+                        </mat-menu><button mat-button [matMenuTriggerFor]="reclamationMenu" class="user-button">
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <span class="demnade mr-12" fxHide fxShow.gt-sm class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                                    Réclamation
+                                </span>
+                                <mat-icon class="s-20" fxHide.xs>keyboard_arrow_down</mat-icon>
+                            </div>
+                        </button>
+                        <input #filter placeholder="Rechercher....">
+                        <mat-icon>search</mat-icon>
+                        <button mat-raised-button color="marron" aria-label="Example icon button with a plus one icon">
+                            inbox:<mat-icon>plus_one</mat-icon>
+                    </button>
+                    </div>
+                    <!-- <mat-paginator> -->
+
+                    <!-- </mat-paginator> -->
+                    <mat-menu #reclamationMenu="matMenu" [overlapTrigger]="false">
+                        <!-- <button mat-menu-item class="" (click)="dishide_pedagogie()">Pédagogique </button> -->
+                        <button mat-menu-item class="" (click)="dishide_service()"> Services   </button>
+                    </mat-menu>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+            <div class="container" [hidden]="hidedemandereclamation">
+                <form #f="ngForm" (ngSubmit)="SendEmail()">
+                    <div class="form-group">
+                        <label>Desitanataire:</label>
+                        <input type="text" required ngModel #dis="ngModel" pattern="[a-zA-Z0-9]+@gmail.com" class="form-control" name="to" placeholder="Enter Email: exemple123@gmail.com">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="dis.invalid && dis.touched">
+                        <div *ngIf="dis.errors.required"> Le distinatiare est obligatoire </div>
+                        <div *ngIf="dis.errors.pattern"> Le mail est incorrect. </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Objet:</label>
+                        <input type="text" required ngModel #obj="ngModel" [(ngModel)]="data_form.subject" class="form-control" name="subject" placeholder="Enter l'objet">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="obj.invalid && obj.touched"> L'objet est obligatoire </div>
+                    <label for="classe ">Type de demande</label>
+                    <select id="classe " name="classe ">
+                    <option value="dut " >Stages</option>
+                    <option value="dst " >Exhaunaurations</option>
+                    <option value="dic " >Environmentals</option>
+                    </select>
+                    <label for="classe ">Type de reclamation</label>
+                    <select id="classe " name="classe ">
+                    <option value="dut " >Stages</option>
+                    <option value="dst " >Exhaunaurations</option>
+                    <option value="dic " >Environmentals</option>
+                    </select>
+
+                    <label for="subject ">Sujet</label>
+                    <textarea equired ngModel #suj="ngModel" [(ngModel)]="data_form.content" rows="3" id="subject " name="subject " placeholder="Ecrire ici... " style="height:200px "></textarea>
+                    <div class="alert alert-danger" *ngIf="suj.invalid && suj.touched">
+                        <!-- Css les class alert danger bootsratp foncionne pas  -->
+                        Le sujet est obligatoire
+                    </div>
+                    <!-- (click)="hide_textarea()" -->
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+
+        </div>
+        <!-- / CONTENT CARD -->
+        <!-- CONTENT CARD -->
+        <div class="content-card ">
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true "></mat-header-row>
+            <div class="container " [hidden]="hidestage ">
+                <form #f="ngForm" (ngSubmit)="SendEmail() ">
+                    <div class="form-group ">
+                        <label>Desitanataire:</label>
+                        <input type="text " required ngModel #dis="ngModel" pattern="[a-zA-Z0-9]+@gmail.com " class="form-control " name="to " placeholder="Enter Email: exemple123@gmail.com ">
+                    </div>
+                    <div class="alert alert-danger " *ngIf="dis.invalid && dis.touched ">
+                        <div *ngIf="dis.errors.required "> Le distinatiare est obligatoire </div>
+                        <div *ngIf="dis.errors.pattern "> Le mail est incorrect. </div>
+                    </div>
+                    <div class="form-group ">
+                        <label>Objet:</label>
+                        <input type="text " required ngModel #obj="ngModel" [(ngModel)]="data_form.subject " class="form-control " name="subject " placeholder="Enter l 'objet">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="obj.invalid && obj.touched"> L'objet est obligatoire </div>
+                    <label for="classe ">Type de demande</label>
+                    <select id="classe " name="classe ">
+                    <option value="dut "  >Stages</option>
+                    <option value="dst "disabled >Exhaunaurations</option>
+                    <option value="dic " disabled >Environmentals</option>
+                    </select>
+
+                    <label for="subject ">Sujet</label>
+                    <textarea equired ngModel #suj="ngModel" [(ngModel)]="data_form.content" rows="3" id="subject " name="subject " placeholder="Ecrire ici... " style="height:200px "></textarea>
+                    <div class="alert alert-danger" *ngIf="suj.invalid && suj.touched">
+                        <!-- Css les class alert danger bootsratp foncionne pas  -->
+                        Le sujet est obligatoire
+                    </div>
+                    <!-- (click)="hide_textarea()" -->
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+
+        </div>
+        <!-- / CONTENT CARD -->
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+            <div class="container" [hidden]="hideservice">
+                <form #f="ngForm" (ngSubmit)="SendEmail()">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Favorite food</mat-label>
+                        <input matInput placeholder="Ex. Pizza" value="Sushi">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Leave a comment</mat-label>
+                        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                    </mat-form-field>
+                    <div class="form-group">
+                        <label>Desitanataire:</label>
+                        <input type="text" required ngModel #dis="ngModel" pattern="[a-zA-Z0-9]+@gmail.com" class="form-control" name="to" placeholder="Enter Email: exemple123@gmail.com">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="dis.invalid && dis.touched">
+                        <div *ngIf="dis.errors.required"> Le distinatiare est obligatoire </div>
+                        <div *ngIf="dis.errors.pattern"> Le mail est incorrect. </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Objet:</label>
+                        <input type="text" required ngModel #obj="ngModel" [(ngModel)]="data_form.subject" class="form-control" name="subject" placeholder="Enter l'objet">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="obj.invalid && obj.touched"> L'objet est obligatoire </div>
+                    <label for="classe ">Type de reclamation</label>
+                    <select id="classe " name="classe ">
+                    <option value="dut "  >Services</option>
+                    <option value="dst "disabled >Pedagogie</option>
+                    </select>
+
+                    <label for="subject ">Sujet</label>
+                    <textarea equired ngModel #suj="ngModel" [(ngModel)]="data_form.content" rows="3" id="subject " name="subject " placeholder="Ecrire ici... " style="height:200px "></textarea>
+                    <div class="alert alert-danger" *ngIf="suj.invalid && suj.touched">
+                        <!-- Css les class alert danger bootsratp foncionne pas  -->
+                        Le sujet est obligatoire
+                    </div>
+                    <!-- (click)="hide_textarea()" -->
+                    <button type="submit" [disabled]="f.invalid">Envoyer</button>
+                </form>
+            </div>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>
+<style>
+    .textarea_button {
+        position: relative;
+        top: 24%;
+        /* left: 10%; */
+        background: #1579cb;
+        color: white;
+        border-style: outset;
+        border-color: #0066A2;
+        width: 100px;
+        font: bold15px arial, sans-serif;
+        text-shadow: none;
+    }
+</style>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+        
+        input[type=submit] {
+            background-color: #269feb;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        
+        .demande {
+            background-color: #269feb;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <h3>Contact Form</h3>
+
+    <div class="container" [hidden]="hide">
+        <form>
+            <div class="form-group">
+                <label>Desitanataire:</label>
+                <input type="text" class="form-control" name="to" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+                <label>Objet:</label>
+                <input type="text" class="form-control" name="subject" placeholder="Enter l'objet">
+            </div>
+            <div class="form-group">
+                <label for="fname ">Nom et Prénom</label>
+                <input type="text " id="fname " name="firstname " placeholder="Votre nom.. ">
+            </div>
+            <label for="country ">Classe</label>
+            <select id="country " name="country ">
+      <option value="australia ">DUT</option>
+      <option value="canada ">DST</option>
+    </select>
+
+            <label for="subject ">Sujet</label>
+            <textarea id="subject " name="subject " placeholder="Ecrire ici... " style="height:200px "></textarea>
+
+            <input type="submit " (click)="hide_textarea()" value="Envoyer ">
+        </form>
+    </div> -->
+
+</body>
+
+</html>
